@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 import SearchIcon from "@material-ui/icons/Search";
-import { Avatar, Box, Button, InputBase, Paper } from "@material-ui/core";
+import { Button, InputBase, Paper } from "@material-ui/core";
 
 import { useAsyncData } from "../api/useAsyncData";
 import { fetchUser } from "../requests/fetchUser";
 import { CLIENT_ID, CLIENT_SECRET } from "./constances";
+import UserDetails from './UserDetails';
 
 const UserSearch = () => {
   const [input, setInput] = useState("");
@@ -45,18 +46,8 @@ const UserSearch = () => {
         Search
       </Button>
 
-      <div>
-        <Avatar
-          variant="rounded"
-          alt="Avatar"
-          src={data?.data?.avatar_url}
-          style={{ height: "64px", width: "64px" }}
-        />
+   {data && <UserDetails user={data}/>}  
 
-        <Box>{data?.data?.name || data?.data?.login || ""}</Box>
-
-        <Box>{data?.data?.bio || ""}</Box>
-      </div>
     </div>
   );
 };
