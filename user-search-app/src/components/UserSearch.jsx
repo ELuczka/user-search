@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import { Button, Grid, InputBase, Paper } from "@material-ui/core";
 
@@ -11,7 +12,27 @@ import UserRepositories from "./UserRepositories";
 import ErrorMessage from "../common-coponents/ErrorMessage";
 import Loading from "../common-coponents/Loading";
 
+const useStyles = makeStyles((theme) => ({
+  searchUser: {
+    padding: theme.spacing(),
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: "#E5E5E5",
+  },
+
+  input: {
+    marginLeft: theme.spacing(1),
+  },
+  searchButton: {
+    marginLeft: theme.spacing(2),
+    padding: theme.spacing(1.5),
+    textTransform: "none",
+  },
+}));
+
 const UserSearch = () => {
+  const classes = useStyles();
+
   const [input, setInput] = useState("");
 
   const { data, isLoading, error, loadData } = useAsyncData({
@@ -23,6 +44,7 @@ const UserSearch = () => {
       <Grid container item xs={5}>
         <Grid item xs={6}>
           <Paper 
+          className={classes.searchUser}
           >
             <SearchIcon onClick={() => loadData(input)} />
             <InputBase
@@ -35,6 +57,7 @@ const UserSearch = () => {
                   loadData(input);
                 }
               }}
+              className={classes.input}
             />
           </Paper>
         </Grid>
@@ -45,6 +68,7 @@ const UserSearch = () => {
             size="medium"
             color="primary"
             onClick={() => loadData(input)}
+            className={classes.searchButton}
           >
             Search
           </Button>

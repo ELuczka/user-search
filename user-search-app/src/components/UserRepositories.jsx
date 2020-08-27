@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Link, Paper, Typography } from "@material-ui/core";
 
 import { useAsyncData } from "../api/useAsyncData";
@@ -7,7 +8,16 @@ import { CLIENT_ID, CLIENT_SECRET } from "./constances";
 import ErrorMessage from "../common-coponents/ErrorMessage";
 import Loading from "../common-coponents/Loading";
 
+const useStyles = makeStyles((theme) => ({
+    repoLink: {
+      padding: theme.spacing(),
+      marginTop: theme.spacing(2),
+    },
+  }));
+
 const UserRepositories = ({ user }) => {
+    const classes = useStyles();
+
   const userLogin = user?.data?.login;
 
   const url = `https://api.github.com/users/${userLogin}/repos?sort=stars&per_page=3&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
@@ -33,7 +43,7 @@ const UserRepositories = ({ user }) => {
         {hasRepos ? (
           data.data.map((el) => (
             <Grid item xs={8} key={el.id}>
-              <Paper >
+              <Paper className={classes.repoLink}>
                 <Link href={el.svn_url}>
                   <Typography noWrap>{el.name}</Typography>
                 </Link>
