@@ -1,14 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar, Box, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
-    height: "64px", 
+    height: "64px",
     width: "64px",
   },
   container: {
-    marginTop: "20px" ,
+    marginTop: "20px",
   },
 }));
 
@@ -34,7 +35,7 @@ const UserDetails = ({ user }) => {
         </Grid>
         <Grid item xs={3}>
           <Box fontWeight="fontWeightBold">
-            {user.name !=="" ? user.name : user.login}
+            {user.name !== "" ? user.name : user.login}
           </Box>
         </Grid>
         <Grid container item xs={12}>
@@ -50,3 +51,12 @@ const UserDetails = ({ user }) => {
 };
 
 export default UserDetails;
+
+UserDetails.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+  }),
+};

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Grid, Link, Paper, Typography } from "@material-ui/core";
 
@@ -9,14 +10,14 @@ import ErrorMessage from "../common-coponents/ErrorMessage";
 import Loading from "../common-coponents/Loading";
 
 const useStyles = makeStyles((theme) => ({
-    repoLink: {
-      padding: theme.spacing(),
-      marginTop: theme.spacing(2),
-    },
-  }));
+  repoLink: {
+    padding: theme.spacing(),
+    marginTop: theme.spacing(2),
+  },
+}));
 
 const UserRepositories = ({ user }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
   const url = `https://api.github.com/users/${user.login}/repos?sort=stars&per_page=3&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
 
@@ -62,3 +63,12 @@ const UserRepositories = ({ user }) => {
 };
 
 export default UserRepositories;
+
+UserRepositories.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    bio: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+    login: PropTypes.string.isRequired,
+  }),
+};
