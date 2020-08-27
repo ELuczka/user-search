@@ -39,6 +39,13 @@ const UserSearch = () => {
     fetchData: (event) => fetchUser(`https://api.github.com/users/${event}?client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`),
   });
 
+  const memoizedUserDetails = React.useMemo(() => ({
+    name: data?.data?.name || "",
+    bio: data?.data?.bio || "",
+    avatarUrl: data?.data?.avatar_url || "",
+    login: data?.data?.login || "",
+  }), [data]);
+
   return (
     <>
       <Grid container item xs={5}>
@@ -77,8 +84,8 @@ const UserSearch = () => {
 
       {data && (
         <>
-          <UserDetails user={data} />
-          <UserRepositories user={data} />
+          <UserDetails user={memoizedUserDetails} />
+          <UserRepositories user={memoizedUserDetails} />
         </>
       )}
       <Grid container item xs={5}>

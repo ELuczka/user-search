@@ -28,19 +28,19 @@ const UserDetails = ({ user }) => {
           <Avatar
             variant="rounded"
             alt="Avatar"
-            src={user?.data?.avatar_url}
+            src={user.avatarUrl}
             className={classes.avatar}
           />
         </Grid>
         <Grid item xs={3}>
           <Box fontWeight="fontWeightBold">
-            {user.data?.name || user.data?.login}
+            {user.name !=="" ? user.name : user.login}
           </Box>
         </Grid>
         <Grid container item xs={12}>
           <Grid item xs={8}>
             <Box fontWeight="fontWeightLight" my={2}>
-              {user.data?.bio || ""}
+              {user.bio}
             </Box>
           </Grid>
         </Grid>

@@ -18,9 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const UserRepositories = ({ user }) => {
     const classes = useStyles();
 
-  const userLogin = user?.data?.login;
-
-  const url = `https://api.github.com/users/${userLogin}/repos?sort=stars&per_page=3&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
+  const url = `https://api.github.com/users/${user.login}/repos?sort=stars&per_page=3&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`;
 
   const { data, isLoading, error, loadData } = useAsyncData({
     loadOnMount: true,
