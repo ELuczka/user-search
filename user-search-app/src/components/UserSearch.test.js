@@ -11,7 +11,7 @@ const memoizedUserDetails = {
     login: "Test",
   };
 
-it('Test', () => {
+it('UserSearch to match snapshot', () => {
     const component = renderer
     .create(<UserSearch user={memoizedUserDetails}/>)
     .toJSON();

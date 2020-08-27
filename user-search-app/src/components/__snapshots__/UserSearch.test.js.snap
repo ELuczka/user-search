@@ -41,3 +41,45 @@ exports[`Test 1`] = `
   </div>
 </div>
 `;
+
+exports[`UserSearch to match snapshot 1`] = `
+<div
+  className="MuiGrid-root makeStyles-container-2 MuiGrid-container MuiGrid-item MuiGrid-align-items-xs-flex-end MuiGrid-grid-xs-5"
+>
+  <div
+    className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2"
+  >
+    <div
+      className="MuiAvatar-root MuiAvatar-rounded makeStyles-avatar-1"
+    >
+      <img
+        alt="Avatar"
+        className="MuiAvatar-img"
+        src="https://avatars1.githubusercontent.com/u/129108?v=4"
+      />
+    </div>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3"
+  >
+    <div
+      className="MuiBox-root MuiBox-root-3"
+    >
+      Test User
+    </div>
+  </div>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-grid-xs-12"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8"
+    >
+      <div
+        className="MuiBox-root MuiBox-root-4"
+      >
+        Hello World, I am React Developer!
+      </div>
+    </div>
+  </div>
+</div>
+`;
