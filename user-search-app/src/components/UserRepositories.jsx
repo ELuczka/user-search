@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Link, Paper, Typography } from "@material-ui/core";
+import { Box, Grid, Link, Paper, Typography } from "@material-ui/core";
 
 import { useAsyncData } from "../api/useAsyncData";
 import { fetchUser } from "../requests/fetchUser";
@@ -25,22 +25,30 @@ const UserRepositories = ({ user }) => {
 
   return (
     <>
-      <Box fontWeight="fontWeightBold">Top repositories</Box>
+      <Grid container item xs={5} direction="column">
+        <Grid item xs={6}>
+          <Box fontWeight="fontWeightBold">Top repositories</Box>
+        </Grid>
 
-      {hasRepos ? (
-        data.data.map((el) => (
-          <Paper key={el.id}>
-            <Link href={el.svn_url}>
-              <Typography noWrap>{el.name}</Typography>
-            </Link>
-          </Paper>
-        ))
-      ) : (
-        <Typography>This user has no repository.</Typography>
-      )}
+        {hasRepos ? (
+          data.data.map((el) => (
+            <Grid item xs={8} key={el.id}>
+              <Paper >
+                <Link href={el.svn_url}>
+                  <Typography noWrap>{el.name}</Typography>
+                </Link>
+              </Paper>
+            </Grid>
+          ))
+        ) : (
+          <Typography>This user has no repository.</Typography>
+        )}
 
-      {isLoading && <Loading />}
-      {error && <ErrorMessage errorMessage="Something went wrong... " />}
+        <Grid container item xs={5}>
+          {isLoading && <Loading />}
+          {error && <ErrorMessage errorMessage="Something went wrong... " />}
+        </Grid>
+      </Grid>
     </>
   );
 };

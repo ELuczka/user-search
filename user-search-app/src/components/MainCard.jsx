@@ -1,12 +1,17 @@
 import React from "react";
 
-import UserSearch from './UserSearch';
+import { Box, Grid } from "@material-ui/core";
+import UserSearch from "./UserSearch";
 
 const MainCard = () => {
   return (
-    <div>
-      <UserSearch/>
-    </div>
+    <>
+      <Box component={Grid} mt={6}>
+        <Grid container spacing={2} direction="column" alignItems="center">
+          <UserSearch />
+        </Grid>
+      </Box>
+    </>
   );
 };
 
