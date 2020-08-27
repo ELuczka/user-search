@@ -4,6 +4,8 @@ import { Box, Link, Paper, Typography } from "@material-ui/core";
 import { useAsyncData } from "../api/useAsyncData";
 import { fetchUser } from "../requests/fetchUser";
 import { CLIENT_ID, CLIENT_SECRET } from "./constances";
+import ErrorMessage from "../common-coponents/ErrorMessage";
+import Loading from "../common-coponents/Loading";
 
 const UserRepositories = ({ user }) => {
   const userLogin = user?.data?.login;
@@ -27,7 +29,7 @@ const UserRepositories = ({ user }) => {
 
       {hasRepos ? (
         data.data.map((el) => (
-          <Paper>
+          <Paper key={el.id}>
             <Link href={el.svn_url}>
               <Typography noWrap>{el.name}</Typography>
             </Link>
@@ -36,6 +38,9 @@ const UserRepositories = ({ user }) => {
       ) : (
         <Typography>This user has no repository.</Typography>
       )}
+
+      {isLoading && <Loading />}
+      {error && <ErrorMessage errorMessage="Something went wrong... " />}
     </>
   );
 };
